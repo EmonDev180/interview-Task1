@@ -6,6 +6,7 @@ const app = express();
 const PORT = process.env.PORT || 4000;
 
 
+//middlewere
 app.use(bodyParser.json());
 
 
@@ -26,18 +27,10 @@ const createFormOnJotForm = async (formName, formActive) => {
     console.error('Error creating form in JotForm:', error);
   }
 };
-
-
 app.post('/webhook', (req, res) => {
-
   const formData = req.body;
   console.log('Received form submission:', formData);
-
-
   const { form_name, form_active } = formData;
-
-
- 
   createFormOnJotForm(form_name, form_active); 
   res.status(200).send('Form submitted and sent to JotForm');
 
